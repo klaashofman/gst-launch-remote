@@ -1,1 +1,2 @@
-APP_PLATFORM = 15
+APP_ABI := all
+APP_STL := c++_shared

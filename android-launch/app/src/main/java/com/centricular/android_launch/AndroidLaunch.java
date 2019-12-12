@@ -54,6 +54,7 @@ public class AndroidLaunch extends Activity implements SurfaceHolder.Callback, O
     private PowerManager.WakeLock wake_lock;
 
     static {
+        System.loadLibrary("c++_shared");
         System.loadLibrary("gstreamer_android");
         System.loadLibrary("android_launch");
         nativeClassInit();

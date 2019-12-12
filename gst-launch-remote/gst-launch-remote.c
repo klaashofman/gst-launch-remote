@@ -670,8 +670,8 @@ read_line_cb (GObject * source_object, GAsyncResult * res, gpointer user_data)
       if (command[0] && command[1]) {
         gint64 port = g_ascii_strtoll (command[1], NULL, 10);
         GST_DEBUG ("Setting netclock %s %" G_GINT64_FORMAT, command[0], port);
-        self->net_clock =
-            gst_net_client_clock_new ("netclock", command[0], port, 0);
+        /*self->net_clock =
+            gst_net_client_clock_new ("netclock", command[0], port, 0);*/
       } else {
         GST_DEBUG ("Unsetting netclock");
       }
@@ -700,8 +700,8 @@ read_line_cb (GObject * source_object, GAsyncResult * res, gpointer user_data)
       GstState s = GST_STATE_VOID_PENDING;
 
       if (self->pipeline) {
-        gst_element_query_duration (self->pipeline, GST_FORMAT_TIME, &duration);
-        gst_element_query_position (self->pipeline, GST_FORMAT_TIME, &position);
+        gst_element_query_duration (self->pipeline, GST_FORMAT_TIME, (gint64 *)&duration);
+        gst_element_query_position (self->pipeline, GST_FORMAT_TIME, (gint64 *)&position);
         s = GST_STATE (self->pipeline);
       }
 
